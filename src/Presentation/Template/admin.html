@@ -1,3 +1,5 @@
+{% include 'header.html' %}
+
 <h1>Admin</h1>
 
 <form action="/post" method="post">
@@ -11,7 +13,9 @@
         <textarea name="content"></textarea>
     </div>
 
-    <input type="submit" value="Submit">
+    <input type="submit" class="button" value="Submit">
 </form>
 
 <a href="/">&larr; Back to blog</a>
+
+{% include 'footer.html' %}

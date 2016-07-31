@@ -1,0 +1,21 @@
+.index--title {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.index--post-title {
+  margin-bottom: 3rem;
+}
+
+.index--post-title-link,
+.index--post-title-link:visited {
+  color: #34495e;
+  text-decoration: none;
+}
+
+.index--post-title-link:hover,
+.index--post-title-link:focus {
+  color: #2c3e50;
+  text-decoration: underline;
+}

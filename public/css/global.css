@@ -1,0 +1,58 @@
+html {
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: sans-serif;
+    color: #333;
+    margin: 2rem;
+}
+
+input[type=text],
+input[type=number],
+textarea {
+    border: 1px solid #8c8c8c;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+textarea {
+    min-height: 20rem;
+}
+
+label {
+    font-weight: bold;
+}
+
+a,
+a:visited {
+    color: #3498db;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: #2980b9;
+}
+
+.button {
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #2ecc71;
+    color: #fff;
+    font-size: 1.4rem;
+    padding: 1rem;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #27ae60;
+    cursor: pointer;
+}

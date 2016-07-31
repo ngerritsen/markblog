@@ -1,13 +1,13 @@
 <?php
-namespace Markblog\Presentation\View;
+namespace Markblog\Presentation\Component;
 
 use Markblog\Domain\Contract\PostRepositoryInterface;
 use Markblog\Domain\Entity\Post;
-use Markblog\Presentation\Contract\View;
+use Markblog\Presentation\Contract\Component;
 use Parsedown;
 use Twig_Environment;
 
-class PostView implements View
+class PostComponent implements Component
 {
     /**
      * @var Twig_Environment

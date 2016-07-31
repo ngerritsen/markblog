@@ -1,32 +1,32 @@
 <?php
 namespace Markblog\Infrastructure\Controller;
 
-use Markblog\Presentation\View\IndexView;
-use Markblog\Presentation\View\PostView;
+use Markblog\Presentation\Component\IndexComponent;
+use Markblog\Presentation\Component\PostComponent;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class PostController
 {
     /**
-     * @var IndexView
+     * @var IndexComponent
      */
-    private $indexView;
+    private $indexComponent;
 
     /**
-     * @var PostView
+     * @var PostComponent
      */
-    private $postView;
+    private $postComponent;
 
-    public function __construct(IndexView $indexView, PostView $postView)
+    public function __construct(IndexComponent $indexComponent, PostComponent $postComponent)
     {
-        $this->postView = $postView;
-        $this->indexView = $indexView;
+        $this->postComponent = $postComponent;
+        $this->indexComponent = $indexComponent;
     }
 
     public function getAll(RequestInterface $request, ResponseInterface $response, array $args = [])
     {
-        $html = $this->indexView->render($args);
+        $html = $this->indexComponent->render($args);
         $response->getBody()->write($html);
 
         return $response;
@@ -34,9 +34,18 @@ class PostController
 
     public function get(RequestInterface $request, ResponseInterface $response, array $args = [])
     {
-        $html = $this->postView->render($args);
+        $html = $this->postComponent->render($args);
         $response->getBody()->write($html);
 
         return $response;
+    }
+
+    public function post(Request $request, Response $response, array $args = [])
+    {
+        $form = $request->getParams();
+
+        $this->postRepository->add($form['title'], $form['content']);
+
+        return $response->withRedirect('/');
     }
 }

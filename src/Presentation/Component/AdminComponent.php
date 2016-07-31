@@ -1,10 +1,10 @@
 <?php
-namespace Markblog\Presentation\View;
+namespace Markblog\Presentation\Component;
 
-use Markblog\Presentation\Contract\View;
+use Markblog\Presentation\Contract\Component;
 use Twig_Environment;
 
-class AdminView implements View
+class AdminComponent implements Component
 {
     /**
      * @var Twig_Environment

@@ -2,46 +2,32 @@
 namespace Markblog\Infrastructure\Controller;
 
 use Markblog\Domain\Contract\PostRepositoryInterface;
-use Markblog\Presentation\View\AdminView;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Markblog\Presentation\Component\AdminComponent;
 use Slim\Http\Request;
+use Slim\Http\Response;
 
 class AdminController
 {
     /**
-     * @var AdminView
+     * @var AdminComponent
      */
-    private $adminView;
+    private $adminComponent;
 
     /**
      * @var PostRepositoryInterface
      */
     private $postRepository;
 
-    public function __construct(AdminView $adminView, PostRepositoryInterface $postRepository)
+    public function __construct(AdminComponent $adminComponent, PostRepositoryInterface $postRepository)
     {
-        $this->adminView = $adminView;
+        $this->adminComponent = $adminComponent;
         $this->postRepository = $postRepository;
     }
 
-    public function get(RequestInterface $request, ResponseInterface $response, array $args = [])
+    public function get(Request $request, Response $response, array $args = [])
     {
-        $html = $this->adminView->render($args);
+        $html = $this->adminComponent->render($args);
         $response->getBody()->write($html);
-
-        return $response;
-    }
-
-    public function post(Request $request, ResponseInterface $response, array $args = [])
-    {
-        $form = $request->getParams();
-
-        $result = $this->postRepository->add($form['title'], $form['content']);
-
-        if ($result === true) {
-            $response->getBody()->write('Success!');
-        }
 
         return $response;
     }

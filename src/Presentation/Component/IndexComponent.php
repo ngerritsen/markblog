@@ -1,11 +1,11 @@
 <?php
-namespace Markblog\Presentation\View;
+namespace Markblog\Presentation\Component;
 
 use Markblog\Domain\Contract\PostRepositoryInterface;
-use Markblog\Presentation\Contract\View;
+use Markblog\Presentation\Contract\Component;
 use Twig_Environment;
 
-class IndexView implements View
+class IndexComponent implements Component
 {
     /**
      * @var Twig_Environment

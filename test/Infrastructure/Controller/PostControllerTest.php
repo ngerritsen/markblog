@@ -5,8 +5,8 @@ use Slim\Http\Response;
 
 class PostControllerTest extends TestCase
 {
-    private $indexView;
-    private $postView;
+    private $indexComponent;
+    private $postComponent;
     private $request;
     private $response;
 
@@ -17,19 +17,19 @@ class PostControllerTest extends TestCase
 
     public function setUp()
     {
-        $this->indexView = Phake::mock('Markblog\Presentation\View\IndexView');
-        $this->postView = Phake::mock('Markblog\Presentation\View\PostView');
+        $this->indexComponent = Phake::mock('Markblog\Presentation\Component\IndexComponent');
+        $this->postComponent = Phake::mock('Markblog\Presentation\Component\PostComponent');
         $this->request = Phake::mock('Psr\Http\Message\RequestInterface');
         $this->response = new Response();
 
-        $this->postController = new PostController($this->indexView, $this->postView);
+        $this->postController = new PostController($this->indexComponent, $this->postComponent);
     }
 
     public function testGetAll()
     {
         $testArgs = ['id' => 1];
 
-        Phake::when($this->indexView)->render($testArgs)->thenReturn('IndexTestHtml');
+        Phake::when($this->indexComponent)->render($testArgs)->thenReturn('IndexTestHtml');
 
         $result = $this->postController->getAll($this->request, $this->response, $testArgs);
 
@@ -38,7 +38,7 @@ class PostControllerTest extends TestCase
 
     public function testGet()
     {
-        Phake::when($this->postView)->render([])->thenReturn('PostTestHtml');
+        Phake::when($this->postComponent)->render([])->thenReturn('PostTestHtml');
 
         $result = $this->postController->get($this->request, $this->response, []);
 

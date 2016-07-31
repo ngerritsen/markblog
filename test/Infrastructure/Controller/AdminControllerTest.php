@@ -6,7 +6,7 @@ use Slim\Http\Response;
 class AdminControllerTest extends TestCase
 {
     private $postRepository;
-    private $adminView;
+    private $adminComponent;
     private $request;
     private $response;
 
@@ -17,17 +17,17 @@ class AdminControllerTest extends TestCase
 
     public function setUp()
     {
-        $this->adminView = Phake::mock('Markblog\Presentation\View\AdminView');
+        $this->adminComponent = Phake::mock('Markblog\Presentation\Component\AdminComponent');
         $this->postRepository = Phake::mock('Markblog\Domain\Contract\PostRepositoryInterface');
         $this->request = Phake::mock('Slim\Http\Request');
         $this->response = new Response();
 
-        $this->adminController = new AdminController($this->adminView, $this->postRepository);
+        $this->adminController = new AdminController($this->adminComponent, $this->postRepository);
     }
 
     public function testGet()
     {
-        Phake::when($this->adminView)->render([])->thenReturn('TestHtml');
+        Phake::when($this->adminComponent)->render([])->thenReturn('TestHtml');
 
         $result = $this->adminController->get($this->request, $this->response, []);
 

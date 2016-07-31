@@ -1,18 +1,18 @@
 <?php
 
 use Markblog\Domain\Entity\Post;
-use Markblog\Presentation\View\PostView;
+use Markblog\Presentation\Component\PostComponent;
 use PHPUnit\Framework\TestCase;
 
-class PostViewTest extends TestCase
+class PostComponentTest extends TestCase
 {
-    public function testPostViewRender()
+    public function testPostComponentRender()
     {
         $parsedownMock = Phake::mock('Parsedown');
         $twigMock = Phake::mock('Twig_Environment');
         $postRepositoryMock = Phake::mock('Markblog\Domain\Contract\PostRepositoryInterface');
 
-        $postView = new PostView($twigMock, $postRepositoryMock, $parsedownMock);
+        $postComponent = new PostComponent($twigMock, $postRepositoryMock, $parsedownMock);
 
         $fakePost = new Post(1, 'Test', 'Fake content');
         $fakePostParsed = new Post(1, 'Test', 'Fake content');
@@ -22,7 +22,7 @@ class PostViewTest extends TestCase
         Phake::when($parsedownMock)->text('Fake content')->thenReturn('Fake parsed content');
         Phake::when($twigMock)->render('post.html', ['post' => $fakePostParsed])->thenReturn('TestHtml');
 
-        $result = $postView->render(['id' => 1]);
+        $result = $postComponent->render(['id' => 1]);
 
         $this->assertEquals($result, 'TestHtml');
     }

@@ -1,6 +1,14 @@
-<h1>Blog title</h1>
+{% include 'header.html' %}
+
+<link rel="stylesheet" href="css/index.css">
+
+<h1 class="index--title">Blog title</h1>
 {% for post in posts %}
-    <h2><a href="/post/{{ post.id }}">{{ post.title }}!</a></h2>
+    <h2 class="index--post-title">
+        <a href="/post/{{ post.id }}" class="index--post-title-link">{{ post.title }}</a>
+    </h2>
 {% endfor %}
 
 <a href="/admin">Admin</a>
+
+{% include 'footer.html' %}

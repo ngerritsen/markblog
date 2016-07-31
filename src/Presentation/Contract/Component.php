@@ -1,7 +1,7 @@
 <?php
 namespace Markblog\Presentation\Contract;
 
-interface View
+interface Component
 {
     /**
      * @param array $args
