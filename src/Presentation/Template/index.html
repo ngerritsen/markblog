@@ -1,0 +1,6 @@
+<h1>Blog title</h1>
+{% for post in posts %}
+    <h2><a href="/post/{{ post.id }}">{{ post.title }}!</a></h2>
+{% endfor %}
+
+<a href="/admin">Admin</a>

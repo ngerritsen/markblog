@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "start": "php -S localhost:8080 -t ./public/",
+    "test": "vendor/bin/phpunit --bootstrap vendor/autoload.php test --colors"
+  },
+  "require": {
+    "slim/slim": "^3.0",
+    "league/container": "^2.2",
+    "twig/twig": "~1.0",
+    "jenssegers/lean": "^0.1.0",
+    "phpunit/phpunit": "^5.4",
+    "phake/phake": "^2.3",
+    "erusev/parsedown": "^1.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Markblog\\": "src/"
+    }
+  }
+}
